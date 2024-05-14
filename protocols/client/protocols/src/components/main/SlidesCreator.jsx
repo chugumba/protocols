@@ -32,7 +32,7 @@ const SlidesForm = () => {
         </div>
       ))}
       
-      <button onClick={handleAddSlide}>Добавить слайд</button>
+      <button onClick={handleAddSlide} className={styles.slidesCreatorButton}>Добавить слайд</button>
     </div>
   );
 };

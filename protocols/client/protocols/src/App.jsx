@@ -24,11 +24,11 @@ function App() {
           <HeaderCom />
         </div>
         <div className={styles.main_container}>
-          <div>
+          {/*<div>
             <Title order={1} className={styles.title}>
               Заполните протокол совещания
             </Title>
-          </div>
+          </div>*/}
           <div>
           <Title order={2} className={styles.title}>
               Основной слайд
@@ -42,15 +42,16 @@ function App() {
               p="xl"
               className={styles.paper}
             >
+              <p>Заполните протокол совещания</p>
               <TextInput/>
             </Paper>
           </div>
 
-          <div>
+          {/*<div>
           <Title order={2} className={styles.title}>
               Дополнительные слайды 
             </Title>
-          </div>
+          </div>*/}
 
           <SlidesInput/>
         </div>

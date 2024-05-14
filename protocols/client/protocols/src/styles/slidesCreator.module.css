@@ -5,3 +5,22 @@
     justify-content: center;
     align-items: center;
 }
+
+.slidesCreatorButton {
+    --opacity:1;
+    margin-bottom: 20px;
+    background-color: #00A797;
+    color: #fff;
+    border: 0;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: opacity 500ms ease;
+    opacity: var(--opacity);
+}
+.slidesCreatorButton:hover {
+    --opacity: 0.7;
+}
+.slidesCreatorButton:active {
+    --opacity: 0.9;
+}

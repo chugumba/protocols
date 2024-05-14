@@ -6,7 +6,8 @@ import Underline from '@tiptap/extension-underline';
 import TextAlign from '@tiptap/extension-text-align';
 import Superscript from '@tiptap/extension-superscript';
 import SubScript from '@tiptap/extension-subscript';
-import React from 'react'
+import React from 'react';
+import styles from '../../styles/styles.module.css';
 
 const content = '';
   
@@ -25,7 +26,7 @@ export default function TextInput() {
   });
 
   return (
-      <RichTextEditor editor={editor}>
+      <RichTextEditor editor={editor} className={styles.TextInputEditor}>
         <RichTextEditor.Toolbar sticky>
           <RichTextEditor.ControlsGroup>
             <RichTextEditor.Bold />
