@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Sans:wdth,wght@75..100,100..800&display=swap');
+
+
+
+.body_container {
+  font-family: "Ubuntu Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
 /* styles.module.css */
   .title {
     margin-top: 20px;
@@ -21,4 +33,50 @@
   .test-page {
     padding: 20px;
   }
+
+
+
+
+  .header_container {
+    border: 1px solid black;
+    padding-right: 10px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .header_images img {
+    width: 90px;
+    height: 90px;
+    padding-top: 10px;
+    margin-right: 20px;
+  }
+
+  .header_title p {
+    color: blue;
+    padding: 0;
+    text-align: center;
+  }
+
+  .header_title .header_title_span1 {
+    /*font-weight: 600;
+    font-size: 70px;
+    margin-bottom: -100px;*/
+    font-weight: 600;
+    font-size: 70px;
+    vertical-align: top;
+    margin-bottom: 0;
+    line-height: 1;
+  }
+
+  .header_title .header_title_span2 {
+    /*margin-top: -30px;*/
+    vertical-align: top;
+    margin-top: 0;
+    line-height: 1
+  }
+
+  
   
