@@ -31,7 +31,7 @@ function App() {
           </div>*/}
           <div>
           <Title order={2} className={styles.title}>
-              Основной слайд
+              <p>Основной слайд</p>
             </Title>
             </div>          
           <div>
