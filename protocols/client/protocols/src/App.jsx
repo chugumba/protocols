@@ -4,12 +4,12 @@ import '@mantine/tiptap/styles.css';
 import React from 'react';
 import { Paper, Title } from '@mantine/core';
 import TextInput from './components/TextInput';
-import TitleInput from './components/TitleInput';
+import SlidesInput from './components/SlidesCreator';
 import { createTheme, MantineProvider } from '@mantine/core';
 import styles from './styles/styles.module.css';
 
 const theme = createTheme({
-  /** Put your mantine theme override here */
+  
 });
 
 function App() {
@@ -21,9 +21,11 @@ function App() {
             Заполните протокол совещания
           </Title>
         </div>
-
-          <TitleInput/> 
-
+        <div>
+        <Title order={2} className={styles.title}>
+            Основной слайд
+          </Title>
+          </div>          
         <div>
           <Paper
             shadow="lg"
@@ -35,6 +37,14 @@ function App() {
             <TextInput/>
           </Paper>
         </div>
+
+        <div>
+        <Title order={2} className={styles.title}>
+            Дополнительные слайды 
+          </Title>
+        </div>
+
+        <SlidesInput/>
       </div>
     </MantineProvider>
   );
