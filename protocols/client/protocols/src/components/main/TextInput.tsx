@@ -10,8 +10,10 @@ import React from 'react';
 import styles from '../../styles/styles.module.css';
 
 const content = '';
-  
-export default function TextInput() {
+
+//onTextChange - возвращает текст без форматирования
+//onHTMLChange - вохвращает текст в HTML формате
+export default function TextInput({onTextChange, onHTMLChange}) {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -23,9 +25,14 @@ export default function TextInput() {
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
     ],
     content,
+    onUpdate: ({ editor }) => {
+      onTextChange(editor.getText());
+      onHTMLChange(editor.getHTML())
+    },
   });
 
   return (
+
       <RichTextEditor editor={editor} className={styles.TextInputEditor}>
         <RichTextEditor.Toolbar sticky>
           <RichTextEditor.ControlsGroup>
@@ -45,7 +52,7 @@ export default function TextInput() {
             <RichTextEditor.H4 />
           </RichTextEditor.ControlsGroup>
 
-          <RichTextEditor.ControlsGroup>
+          <RichTextEditor.ControlsGroup >
             <RichTextEditor.Blockquote />
             <RichTextEditor.Hr />
             <RichTextEditor.BulletList />
@@ -72,7 +79,7 @@ export default function TextInput() {
           </RichTextEditor.ControlsGroup>
         </RichTextEditor.Toolbar>
 
-        <RichTextEditor.Content />
+        <RichTextEditor.Content/>
     </RichTextEditor>
   );
 }
