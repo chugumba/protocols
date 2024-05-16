@@ -27,7 +27,7 @@ export default function TextInput({onTextChange, onHTMLChange}) {
     content,
     onUpdate: ({ editor }) => {
       onTextChange(editor.getText());
-      onHTMLChange(editor.getHTML())
+      onHTMLChange(editor.getHTML());
     },
   });
 

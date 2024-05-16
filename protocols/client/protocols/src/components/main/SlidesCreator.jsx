@@ -2,59 +2,46 @@ import React, { useState } from 'react';
 import TextInput from './TextInput';
 import styles from '../../styles/slidesCreator.module.css'
 
-const SlidesForm = () => {
-  const [titleValue, setTitleValue] = useState('');
-  const [textValue, setTextValue] = useState('');
-  
-  const handleTitleChange = (value) => {
-    setTitleValue(value);
-  };
-
+const SlidesForm = ({ onSlidesChange }) => {
   const [slides, setSlides] = useState([]);
-  const [newSlideText, setNewSlideText] = useState('');
 
   const handleAddSlide = () => {
-    setSlides([...slides, { text: newSlideText }]);
-    setNewSlideText('');
-  };
-  {/*const handleAddSlide = () => {
-    const newSlide = { text: newSlideText, id: uuidv4() };
+    const newSlide = {};
     setSlides([...slides, newSlide]);
-    setNewSlideText('');
-  };*/}
+    onSlidesChange(slides);
+  };
 
-  const handleTextChange = (index, text) => {
+  const handleDeleteSlide = () => {
+    const deletedSlide = slides[slides.length - 1];
+    setSlides(slides.slice(0, -1));
+    onSlidesChange(slides);
+  };
+
+  const handleChange = (index, value) => {
     setSlides(slides.map((slide, i) => {
       if (i === index) {
-        return { ...slide, text };
+        return { ...slide, html: value };
       }
       return slide;
     }));
-  };
-
-  const handleDeleteSlide = (index) => {
-    return () => {
-      setSlides(slides.filter((slide, i) => i !== index));
-    };
+    onSlidesChange(slides);
   };
 
   return (
     <div className={styles.main}>
-      {/*slides.map((slide)*/slides.map((slide, index) => (
-        <div /*key={slide.id}*/key={index}>
+      {slides.map((slide, index) => (
+        <div key={index}>
           <TextInput
-            type="text"
-            value={slide.text}
-            onChange={(e) => handleTextChange(index, e.target.value)}
+            onTextChange={(value) => handleChange(index, value)}
+            onHTMLChange={(value) => handleChange(index, value)}
           />
-           <button onClick={handleDeleteSlide(index)} className={styles.slidesCreatorButtonDelete}>Удалить слайд</button>
         </div>
       ))}
       
       <button onClick={handleAddSlide} className={styles.slidesCreatorButton}>Добавить слайд</button>
-      <button onClick={handleTitleChange} disabled={!titleValue || !textValue} className={styles.slidesCreatorButton}>Отправить</button>
+      <button onClick={handleDeleteSlide} className={styles.slidesCreatorButtonDelete}>Удалить слайд</button>
     </div>
   );
 };
 
-export default SlidesForm
+export default SlidesForm;

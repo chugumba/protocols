@@ -21,15 +21,23 @@ const theme = createTheme({
 function App() {
   const [titleValue, setTitleValue] = useState('');
   const [textValue, setTextValue] = useState('');
-  
+  const [htmlValue, setHTMLValue] = useState('');
+  const [slides, setSlides] = useState([]);
+
   const handleTitleChange = (value) => {
     setTitleValue(value);
   };
   const handleTextChange = (value) => {
     setTextValue(value);
-    console.log(value)
   };
 
+  const handleHTMLChange = (value) => {
+    setHTMLValue(value);
+  };
+
+  const handleSlidesChange = (value) => {
+    setSlides(value);
+  };
   return (
     <div className={styles.body_container}> 
       <MantineProvider theme={theme}>
@@ -57,7 +65,7 @@ function App() {
               className={styles.paper}
             >
               <span>Заполните протокол совещания</span>
-              <TextInput onTextChange={handleTextChange}/>
+              <TextInput onTextChange={handleTextChange} onHTMLChange={handleHTMLChange}/>
             </Paper>
           </div>
 
@@ -67,14 +75,27 @@ function App() {
             </Title>
           </div>*/}
 
-          <SlidesInput/>
+          <SlidesInput  onSlidesChange={handleSlidesChange} />
         
 
           {/*<Button color="teal" radius="xs" size="lg" disabled={!titleValue || !textValue} uppercase className={style.slidesCreatorButton}>
             Отправить слайды
         </Button>*/}  
         </div>
-
+        <button
+  onClick={() => {
+    console.log(`Title: ${titleValue}`);
+    console.log(`HTML: ${htmlValue}`);
+    {slides.map((slide) => (
+      
+      console.log(`${slide.html}`)
+   ))}
+  }}
+  disabled={!titleValue||!textValue}
+  className={style.slidesCreatorButton}
+>
+  Отправить
+</button>
       </MantineProvider>
     </div>
   );
