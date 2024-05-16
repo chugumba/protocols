@@ -6,6 +6,7 @@ import { Paper, Title, Button } from '@mantine/core';
 import { createTheme, MantineProvider } from '@mantine/core';
 
 import styles from './styles/styles.module.css';
+import style from './styles/slidesCreator.module.css'
 
 import HeaderCom from './components/header/HeaderComponent';
 
@@ -55,7 +56,7 @@ function App() {
               p="xl"
               className={styles.paper}
             >
-              <p>Заполните протокол совещания</p>
+              <span>Заполните протокол совещания</span>
               <TextInput onTextChange={handleTextChange}/>
             </Paper>
           </div>
@@ -67,11 +68,12 @@ function App() {
           </div>*/}
 
           <SlidesInput/>
-        </div>
+        
 
-        <Button color="teal" radius="xs" size="lg" disabled={!titleValue || !textValue} uppercase>
-          Отправить слайды
-        </Button >
+          {/*<Button color="teal" radius="xs" size="lg" disabled={!titleValue || !textValue} uppercase className={style.slidesCreatorButton}>
+            Отправить слайды
+        </Button>*/}  
+        </div>
 
       </MantineProvider>
     </div>

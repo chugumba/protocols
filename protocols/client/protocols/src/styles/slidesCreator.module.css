@@ -6,14 +6,19 @@
     align-items: center;
 }
 
+
 .slidesCreatorButton {
     --opacity:1;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 20px;
+    width: 200px;
     background-color: #00A797;
     color: #fff;
     border: 0;
     border-radius: 5px;
     padding: 8px 16px;
+    margin: 10px;
     cursor: pointer;
     transition: opacity 500ms ease;
     opacity: var(--opacity);
@@ -22,5 +27,25 @@
     --opacity: 0.7;
 }
 .slidesCreatorButton:active {
+    --opacity: 0.9;
+}
+
+.slidesCreatorButtonDelete {
+    --opacity:1;
+    background-color: #00A797;
+    color: #fff;
+    border: 0;
+    border-radius: 5px;
+    padding: 8px 16px;
+    margin-bottom: 15px;
+    width: 200px;
+    cursor: pointer;
+    transition: opacity 500ms ease;
+    opacity: var(--opacity);
+}
+.slidesCreatorButtonDelete:hover {
+    --opacity: 0.7;
+}
+.slidesCreatorButtonDelete:active {
     --opacity: 0.9;
 }
