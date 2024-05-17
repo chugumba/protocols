@@ -8,13 +8,13 @@ const SlidesForm = ({ onSlidesChange }) => {
   const handleAddSlide = () => {
     const newSlide = {};
     setSlides([...slides, newSlide]);
-    onSlidesChange(slides);
+    onSlidesChange([...slides, newSlide]);
   };
 
   const handleDeleteSlide = () => {
     const deletedSlide = slides[slides.length - 1];
     setSlides(slides.slice(0, -1));
-    onSlidesChange(slides);
+    onSlidesChange(slides.slice(0, -1));
   };
 
   const handleChange = (index, value) => {
@@ -24,9 +24,13 @@ const SlidesForm = ({ onSlidesChange }) => {
       }
       return slide;
     }));
-    onSlidesChange(slides);
+    onSlidesChange(slides.map((slide, i) => {
+      if (i === index) {
+        return { ...slide, html: value };
+      }
+      return slide;
+    }));
   };
-
   return (
     <div className={styles.main}>
       {slides.map((slide, index) => (
