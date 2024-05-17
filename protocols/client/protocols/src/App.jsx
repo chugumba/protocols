@@ -1,15 +1,15 @@
 import '@mantine/core/styles.css';
 import '@mantine/tiptap/styles.css';
-/* App.js */
-import React, {useState} from 'react';
-import { Paper, Title, Button } from '@mantine/core';
+import { Paper, Title } from '@mantine/core';
 import { createTheme, MantineProvider } from '@mantine/core';
 
 import styles from './styles/styles.module.css';
 import style from './styles/slidesCreator.module.css'
 
-import HeaderCom from './components/header/HeaderComponent';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 
+import HeaderCom from './components/header/HeaderComponent';
 import TextInput from './components/main/TextInput';
 import SlidesInput from './components/main/SlidesCreator';
 import TitleInput from './components/main/TitleInput';
@@ -37,6 +37,22 @@ function App() {
 
   const handleSlidesChange = (value) => {
     setSlides(value);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const dataToSend = [
+        htmlValue,
+        ...slides.map((slide) => slide.html),
+      ];
+      const response = await axios.post('http://localhost:5000/protocol', { title: titleValue, dataToSend });
+      const data = response.data;
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <div className={styles.body_container}> 
@@ -69,33 +85,16 @@ function App() {
             </Paper>
           </div>
 
-          {/*<div>
-          <Title order={2} className={styles.title}>
-              Дополнительные слайды 
-            </Title>
-          </div>*/}
-
           <SlidesInput  onSlidesChange={handleSlidesChange} />
         
-
-          {/*<Button color="teal" radius="xs" size="lg" disabled={!titleValue || !textValue} uppercase className={style.slidesCreatorButton}>
-            Отправить слайды
-        </Button>*/}  
+          <button
+            onClick={handleSubmit}
+            disabled={!titleValue || !textValue}
+            className={style.slidesCreatorButton}
+          >
+            Отправить
+          </button>
         </div>
-        <button
-  onClick={() => {
-    console.log(`Title: ${titleValue}`);
-    console.log(`HTML: ${htmlValue}`);
-    {slides.map((slide) => (
-      
-      console.log(`${slide.html}`)
-   ))}
-  }}
-  disabled={!titleValue||!textValue}
-  className={style.slidesCreatorButton}
->
-  Отправить
-</button>
       </MantineProvider>
     </div>
   );
